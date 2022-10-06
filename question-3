@@ -50,4 +50,4 @@ const removeLogs = () => {
 createLogs() 
 
 // deletes the log files
-//removeLogs()
+// removeLogs()
