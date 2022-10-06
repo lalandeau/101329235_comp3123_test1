@@ -1,0 +1,15 @@
+const lowerCaseWords = (val) => {
+    return new Promise((resolved, rejected) => 
+    {
+        if (!Array.isArray(val))
+        rejected("Error! Invalid Input");
+        resolved(val.filter((input) => 
+        isNaN(input)).map((txt) => 
+        txt.toLowerCase()));
+    });
+}
+
+const mixedArray = ["PIZZA", 10, true, 25, true, 'Wings']
+lowerCaseWords(mixedArray)
+.then((resolved) => console.log(resolved))
+.catch((rejected) => console.log(rejected));

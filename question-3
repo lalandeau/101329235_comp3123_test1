@@ -1,0 +1,53 @@
+const log = require("fs");
+
+const createLogs = () => {
+  const value = "./lab_Logs";
+  if (!log.existsSync(value)) { // checking if the directory 
+    log.mkdirSync(value);} // for making the directory file
+    process.chdir(value);
+
+  for (let x = 0; x < 10; x++) { // itertaion for the file being created
+    log.writeFile(`log${x}.txt`, `This file is txtfile : #${x}`, (req) => { // writing inside each file
+        // checking for error
+        if (req) {
+            console.error(`There is an error creating the txtfile${x}.txt`)
+        } else {
+            console.log(`log${x}.txt`)
+        }}
+    );
+  }
+};
+
+const removeLogs = () => {
+  const value = "./lab_logs";
+  if (log.existsSync(value)) { // check if the directory contains file
+    process.chdir(value);
+    log.readdir(process.cwd(), (req, files) => { // reading the directory
+        //itration for each file
+      files.forEach((file) => {
+        log.unlink(file, (req) => {
+            // checks for error
+            if (req) {
+                console.error(`There is an error deleting ${file} file`)
+            } else {
+                console.log(`delete files...${file}`)
+            }}
+        );
+      });
+    });
+  }
+};
+
+/* 
+    note: uncomment the removeLogs() if 
+    you want to delete the files.
+    and do the other way around for creating the
+    log files and the directory folder
+
+*/
+
+// creates the log files
+createLogs() 
+
+// deletes the log files
+//removeLogs()

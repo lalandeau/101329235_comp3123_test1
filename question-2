@@ -1,0 +1,22 @@
+const resolvedPromise = () =>
+  new Promise((res, req) => {
+    setTimeout(() => {
+      res({ message: "delayed success!" })
+    },500);
+  });
+
+const rejectedPromise = () =>
+  new Promise((res, req) => {
+    setTimeout(() => {
+        try {
+            res({ error: "delayed exception!" })
+        } catch (e) {
+            console.error(e);
+        }
+        },500);
+  });
+
+resolvedPromise()
+.then((txt) => console.log(txt));
+rejectedPromise()
+.then((txt) => console.error(txt));
